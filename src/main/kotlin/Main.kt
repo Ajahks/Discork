@@ -1,7 +1,11 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+import discork.clients.DiscordWebsocketClient
+import io.ktor.client.engine.cio.CIO
+import kotlinx.coroutines.runBlocking
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+fun main() {
+    runBlocking {
+        val webSocketClient = DiscordWebsocketClient(CIO.create())
+        webSocketClient.connectToGateway()
+        webSocketClient.close()
+    }
 }

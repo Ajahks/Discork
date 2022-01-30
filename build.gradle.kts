@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.6.10"
+    kotlin("plugin.serialization") version "1.6.10"
     application
 }
 
@@ -14,14 +15,16 @@ repositories {
 
 dependencies {
     implementation("io.mockk:mockk:1.12.2")
-    testImplementation(kotlin("test"))
     implementation(kotlin("stdlib-jdk8"))
-    implementation(platform("org.http4k:http4k-bom:4.19.0.0"))
-    implementation("org.http4k:http4k-core")
-    implementation("org.http4k:http4k-server-undertow")
-    implementation("org.http4k:http4k-client-apache")
-    implementation("org.http4k:http4k-security-oauth")
-    implementation("org.slf4j:slf4j-nop:1.7.2")
+    implementation("com.google.code.gson:gson:2.8.9")
+    implementation("io.ktor:ktor-client-core:1.6.7")
+    implementation("io.ktor:ktor-client-cio:1.6.7")
+    implementation("io.ktor:ktor-client-serialization:1.6.7")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+    implementation("org.apache.logging.log4j:log4j:2.17.0")
+    implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.17.0")
+    testImplementation(kotlin("test"))
+    testImplementation("io.ktor:ktor-client-mock:1.6.7")
 }
 
 tasks.test {
