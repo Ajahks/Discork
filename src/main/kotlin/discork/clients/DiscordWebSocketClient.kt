@@ -1,7 +1,6 @@
 package discork.clients
 
 import discork.HttpRoutes
-import discork.websocket.DiscordWebSocketSessionListener
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.features.json.JsonFeature
