@@ -1,18 +1,18 @@
 package discork.clients
 
 import discork.HttpRoutes
+import discork.websocket.DiscordWebSocketSessionListener
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.features.websocket.WebSockets
 import io.ktor.client.features.websocket.webSocketSession
-import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.url
-import io.ktor.http.URLProtocol
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
 
 @Serializable
 data class DiscordGatewayResponse(
@@ -20,10 +20,14 @@ data class DiscordGatewayResponse(
 )
 
 class DiscordWebsocketClient(engine: HttpClientEngine): DiscorkHttpClient {
-    override val httpClient =  HttpClient(engine) {
+    override val httpClient = HttpClient(engine) {
         install(WebSockets)
         install(JsonFeature) {
-            serializer = KotlinxSerializer()
+            serializer = KotlinxSerializer(Json {
+                prettyPrint = true
+                isLenient = true
+                ignoreUnknownKeys = true
+            })
         }
     }
 
@@ -37,7 +41,7 @@ class DiscordWebsocketClient(engine: HttpClientEngine): DiscorkHttpClient {
             }
         )
 
-        // TODO: handle websocket session
+        DiscordWebSocketSessionListener(session).startListener()
     }
 
     override fun close() {
