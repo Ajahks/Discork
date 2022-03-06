@@ -10,6 +10,7 @@ import io.mockk.junit5.MockKExtension
 import kotlinx.coroutines.channels.ChannelIterator
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.TestCoroutineContext
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -57,6 +58,7 @@ class DiscordWebSocketSessionListenerTests {
         every { receiveChannel.iterator() } returns frameListIterator
 
         runBlocking {
+            every { mockSession.coroutineContext } returns this.coroutineContext
             webSocketListener.startListener()
         }
 
@@ -69,6 +71,7 @@ class DiscordWebSocketSessionListenerTests {
         every { receiveChannel.iterator() } returns frameListIterator
 
         runBlocking {
+            every { mockSession.coroutineContext } returns this.coroutineContext
             webSocketListener.startListener()
         }
 

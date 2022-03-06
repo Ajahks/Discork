@@ -16,7 +16,7 @@ repositories {
 dependencies {
     implementation("io.mockk:mockk:1.12.2")
     implementation(kotlin("stdlib-jdk8"))
-    implementation("com.google.code.gson:gson:2.8.9")
+    implementation("com.google.code.gson:gson:2.9.0")
     implementation("io.ktor:ktor-client-core:1.6.7")
     implementation("io.ktor:ktor-client-cio:1.6.7")
     implementation("io.ktor:ktor-client-serialization:1.6.7")
