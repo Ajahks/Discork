@@ -23,8 +23,13 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
     implementation("org.apache.logging.log4j:log4j:2.17.0")
     implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.17.0")
-    testImplementation(kotlin("test"))
+
+    implementation("io.insert-koin:koin-core:3.1.5")
+    implementation("org.junit.jupiter:junit-jupiter:5.8.2")
+
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit:1.5.31")
     testImplementation("io.ktor:ktor-client-mock:1.6.7")
+    testImplementation("io.insert-koin:koin-test:3.1.5")
 }
 
 tasks.test {
